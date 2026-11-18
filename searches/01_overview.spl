@@ -1,0 +1,6 @@
+index=botsv3 earliest=0
+| stats count by sourcetype
+| sort - count
+
+index=botsv3
+| timechart span=1h count by sourcetype
