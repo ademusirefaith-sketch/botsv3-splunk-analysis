@@ -1,0 +1,9 @@
+index=botsv3 sourcetype="WinEventLog:Security" EventCode=4625
+| stats count by src_ip, Account_Name, Workstation_Name
+| sort - count
+| head 20
+
+index=botsv3 sourcetype="WinEventLog:Security" EventCode=4625
+| bucket _time span=5m
+| stats count by _time, src_ip
+| where count > 10
