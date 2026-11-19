@@ -1,0 +1,9 @@
+index=botsv3 sourcetype="stream:dns" OR sourcetype="bro:dns"
+| stats count by query
+| sort - count
+| head 20
+
+index=botsv3 sourcetype="stream:dns"
+| where len(query) > 30
+| stats count by query, src_ip
+| sort - count
